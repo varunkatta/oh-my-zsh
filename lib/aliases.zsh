@@ -69,7 +69,7 @@ alias lsr='ls -lR'          # list recursively
 
 
 # columnized listing of mounted filesystems
-alias mount='mount | column -t 2>/dev/null' 
+alias mount='mount | column -t 2>/dev/null'
 
 alias path='echo -e ${PATH//:/\\n}' # print path components, one per line
 alias psr='ps -U root -u root u'    # root process listing
@@ -81,11 +81,10 @@ alias mc='mc -b'                    # b/w monochrome
 alias mute='amixer sset 'Master' mute >/dev/null'
 alias unmute='amixer sset 'Master' unmute >/dev/null'
 
-alias cls='clear'
 alias c='clear'
-alias cl='clear'
-alias l='ls -lahrt'
-alias ll='ls -lahrt'
+alias cls='clear'
+alias l='ls -lart'
+alias ll='ls -lart'
 alias r='reset'
 
 
@@ -99,10 +98,4 @@ alias vmpause='VBoxManage  controlvm ubuntu-varun pause'
 alias vmsave='VBoxManage  controlvm ubuntu-varun save'
 alias vmsave='VBoxManage  controlvm ubuntu-varun savestate'
 alias vmresume='VBoxManage controlvm ubuntu-varun resume'
-alias vminfo='VBoxManage showvminfo ubuntu-varun'
-alias vmnicinfo='VBoxManage showvminfo ubuntu-varun | egrep ^NIC'
-
-alias startdb='sudo su postgres -c "/opt/local/lib/postgresql84/bin/postgres -D /opt/local/var/db/postgresql84/defaultdb"'
-
-alias p='python'
-
+#stop vm
