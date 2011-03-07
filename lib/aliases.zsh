@@ -81,8 +81,9 @@ alias mc='mc -b'                    # b/w monochrome
 alias mute='amixer sset 'Master' mute >/dev/null'
 alias unmute='amixer sset 'Master' unmute >/dev/null'
 
-alias c='clear'
 alias cls='clear'
+alias c='clear'
+alias cl='clear'
 alias l='ls -lart'
 alias ll='ls -lart'
 alias r='reset'
