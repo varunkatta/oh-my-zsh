@@ -99,6 +99,6 @@ alias vmpause='VBoxManage  controlvm ubuntu-varun pause'
 alias vmsave='VBoxManage  controlvm ubuntu-varun save'
 alias vmsave='VBoxManage  controlvm ubuntu-varun savestate'
 alias vmresume='VBoxManage controlvm ubuntu-varun resume'
-alias vminfo='VBoxManage showvminfo ubuntu-varun' | egrep ^NIC
+alias vminfo='VBoxManage showvminfo ubuntu-varun'
 alias vmnicinfo='VBoxManage showvminfo ubuntu-varun | egrep ^NIC'
 #stop vm
