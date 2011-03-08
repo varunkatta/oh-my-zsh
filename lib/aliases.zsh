@@ -99,4 +99,8 @@ alias vmpause='VBoxManage  controlvm ubuntu-varun pause'
 alias vmsave='VBoxManage  controlvm ubuntu-varun save'
 alias vmsave='VBoxManage  controlvm ubuntu-varun savestate'
 alias vmresume='VBoxManage controlvm ubuntu-varun resume'
+alias vminfo='VBoxManage showvminfo ubuntu-varun' | egrep ^NIC
+alias vmnicinfo='VBoxManage showvminfo ubuntu-varun | egrep ^NIC'
+
+work/programming/python/krondo/twisted-intro/twisted-server-2/
 #stop vm
