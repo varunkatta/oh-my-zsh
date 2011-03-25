@@ -102,3 +102,7 @@ alias vmresume='VBoxManage controlvm ubuntu-varun resume'
 alias vminfo='VBoxManage showvminfo ubuntu-varun'
 alias vmnicinfo='VBoxManage showvminfo ubuntu-varun | egrep ^NIC'
 #stop vm
+
+alias startdb='sudo su postgres -c "/opt/local/lib/postgresql84/bin/postgres -D /opt/local/var/db/postgresql84/defaultdb"'
+
+alias p='python'
