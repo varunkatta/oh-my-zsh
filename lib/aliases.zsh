@@ -84,8 +84,8 @@ alias unmute='amixer sset 'Master' unmute >/dev/null'
 alias cls='clear'
 alias c='clear'
 alias cl='clear'
-alias l='ls -lart'
-alias ll='ls -lart'
+alias l='ls -lahrt'
+alias ll='ls -lahrt'
 alias r='reset'
 
 
