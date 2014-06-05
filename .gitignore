@@ -4,8 +4,9 @@ projects.zsh
 custom
 !custom/plugins/example
 !custom/example.zsh
-*.swp
+!custom/varun.zsh
 !custom/example.zshcache
+*.swp
 cache/
 !custom/varun.zsh
 log/
