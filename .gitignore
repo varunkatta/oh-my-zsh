@@ -1,8 +1,13 @@
-# custom files
-custom/
-
-# temp files directories
+locals.zsh
+log/.zsh_history
+projects.zsh
+custom
+!custom/plugins/example
+!custom/example.zsh
+*.swp
+!custom/example.zshcache
 cache/
+!custom/varun.zsh
 log/
 *.swp
 .DS_Store
