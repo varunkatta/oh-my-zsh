@@ -38,7 +38,6 @@ alias mount='mount | column -t 2>/dev/null'
 
 alias path='echo -e ${PATH//:/\\n}' # print path components, one per line
 alias psr='ps -U root -u root u'    # root process listing
-alias s='screen -RaA'               # reattach/create, all capabilities, adapt size
 alias reboot='su - -c reboot'
 alias pstree='pstree -aGp'          # args, vt100 chars, pid
 alias mc='mc -b'                    # b/w monochrome
@@ -65,3 +64,21 @@ alias vmsave='VBoxManage  controlvm ubuntu-varun savestate'
 alias vmresume='VBoxManage controlvm ubuntu-varun resume'
 
 
+alias hgrpl="hg revert -a; hg purge; hgl"
+alias mscp="mvn -DskipTests clean package"
+alias mcp="mvn clean package"
+
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+# screen 
+# select the screen of choice.
+function sc() {
+    set -x
+    index=$1
+    sh -c "screen -ls | grep -i tty | awk '{print \$1}' | awk '{ if (${index}==NR) {print} }' > /tmp/tmp_screen_id"
+    echo Attaching to $(cat /tmp/tmp_screen_id)
+    screen -RaAd `cat /tmp/tmp_screen_id`
+}
+# alias s='screen -RaAd'               # reattach/create, all capabilities, adapt size
+alias s='sc'
+alias sls='screen -ls | grep -i tty'
