@@ -19,7 +19,8 @@ export ZSH=$HOME/.oh-my-zsh
 # └─[0] <git:(master 908382✈) >
 # export ZSH_THEME="rkj-repos"
 
-export ZSH_THEME="afowler"
+export ZSH_THEME="rkj-repos"
+export ZSH_THEME="ys"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
