@@ -1,7 +1,9 @@
+# overrides
+
 # set path
 export PATH=$PATH:$HOME/env/bin
 
-#more aliases
+# aliase over-rides
 
 # (i)nteractive; prompt before overwrite
 alias cp='cp -i'
@@ -68,17 +70,40 @@ alias hgrpl="hg revert -a; hg purge; hgl"
 alias mscp="mvn -DskipTests clean package"
 alias mcp="mvn clean package"
 
-export JAVA_HOME=$(/usr/libexec/java_home)
+ostype=$(uname)
+if [ "${ostype}" == "darwin" ]; then
+  echo "Assuming Mac OS"
+  export JAVA_HOME=$(/usr/libexec/java_home)
+else
+  echo "Assuming Linux"
+  export JAVA_HOME=/usr/java/default
+
 
 # screen 
 # select the screen of choice.
 function sc() {
-    set -x
-    index=$1
-    sh -c "screen -ls | grep -i tty | awk '{print \$1}' | awk '{ if (${index}==NR) {print} }' > /tmp/tmp_screen_id"
-    echo Attaching to $(cat /tmp/tmp_screen_id)
-    screen -RaAd `cat /tmp/tmp_screen_id`
+  set -x
+  index=$1
+  sh -c "screen -ls | grep -i tty | awk '{print \$1}' | awk '{ if (${index}==NR) {print} }' > /tmp/tmp_screen_id"
+  echo Attaching to $(cat /tmp/tmp_screen_id)
+  screen -RaAd `cat /tmp/tmp_screen_id`
 }
 # alias s='screen -RaAd'               # reattach/create, all capabilities, adapt size
 alias s='sc'
 alias sls='screen -ls | grep -i tty'
+
+# mercurial
+alias hgt='hg patch --no-commit'
+
+function hgsa() {
+  cd $HOME/src/pepperdata
+  pwd
+  hgs
+  echo
+  for i in {1..5}; do
+    cd $HOME/src$i/pepperdata
+    pwd
+    hgs
+    echo
+  done  
+}
