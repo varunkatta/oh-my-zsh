@@ -77,7 +77,7 @@ if [ "${ostype}" == "darwin" ]; then
 else
   echo "Assuming Linux"
   export JAVA_HOME=/usr/java/default
-
+fi
 
 # screen 
 # select the screen of choice.
