@@ -70,13 +70,15 @@ alias hgrpl="hg revert -a; hg purge; hgl"
 alias mscp="mvn -DskipTests clean package"
 alias mcp="mvn clean package"
 
+
 ostype=$(uname)
-if [ "${ostype}" == "darwin" ]; then
+if [[ "${ostype}" == "Darwin" ]]
+then
   echo "Assuming Mac OS"
   export JAVA_HOME=$(/usr/libexec/java_home)
 else
   echo "Assuming Linux"
-  export JAVA_HOME=/usr/java/default
+  export JAVA_HOME="/usr/java/default"
 fi
 
 # screen 
