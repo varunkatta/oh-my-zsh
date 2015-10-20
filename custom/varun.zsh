@@ -109,3 +109,73 @@ function hgsa() {
     echo
   done  
 }
+
+# Yum stuff
+alias yli="yum list installed"
+alias yi="yum -y install"
+alias yr="yum remove"
+
+# hadoop stuff
+alias hfs='hadoop fs'
+alias hls='hadoop fs -ls'
+alias hdu='hadoop fs -du'
+alias hrm='hadoop fs -rm'
+alias hrmr='hadoop fs -rmr'
+alias hput='hadoop fs -put'
+alias hget='hadoop fs -get'
+
+alias hstat='service --status-all | grep -i hadoop'
+
+function hstart() {
+  h restart "$@"
+}
+
+function hstop() {
+  h stop "$@"
+}
+
+unalias h
+function h() {
+  cmd=$1
+  name=$2
+
+  if [ $# -eq 0 ]; then
+    echo "Usage: h <stop|start|restart> <yarn|classic|rm|nm|jt|tt"
+    return
+  fi
+
+  
+  if [ $# -eq 1 ]; then
+    service hadoop-yarn-resourcemanager ${cmd}
+    service hadoop-yarn-nodemanager ${cmd}
+    return
+  fi
+
+  if [[ "${name}" == "yarn" ]]; then
+    service hadoop-yarn-resourcemanager ${cmd}
+    service hadoop-yarn-nodemanager ${cmd}
+  elif [[ "${name}" == "classic" ]]; then
+    service hadoop-0.20-mapreduce-jobtracker ${cmd}
+    service hadoop-0.20-mapreduce-tasktracker ${cmd}
+  elif [[ "${name}" == "rm" ]]; then
+    service hadoop-yarn-resourcemanager ${cmd}
+  elif [[ "${name}" == "nm" ]]; then
+    service hadoop-yarn-resourcemanager ${cmd}
+  elif [[ "${name}" == "jt" ]]; then
+    service hadoop-0.20-mapreduce-jobtracker ${cmd}
+  elif [[ "${name}" == "tt" ]]; then
+    service hadoop-0.20-mapreduce-tasktracker ${cmd}
+  fi
+}
+
+alias yls='yarn application -list'
+
+function ykill() {
+  if [ $# -eq 0 ]; then
+    yarn application -list | grep -i application_ | awk '{print $1}' | xargs -I{} yarn application -kill {}
+    exit 1
+  fi
+}
+
+
+
