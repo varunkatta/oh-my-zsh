@@ -96,6 +96,8 @@ alias sls='screen -ls | grep -i tty'
 
 # mercurial
 alias hgt='hg patch --no-commit'
+unalias hgs
+alias hgs='hg status $(hg root)'
 
 function hgsa() {
   cd $HOME/src/pepperdata
