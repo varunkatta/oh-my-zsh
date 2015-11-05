@@ -103,7 +103,7 @@ function hgsa() {
   cd $HOME/src/pepperdata
   pwd
   hgs
-  popd
+  popd > /dev/null
   echo
   for i in {1..5}; do
     cd $HOME/src$i/pepperdata
