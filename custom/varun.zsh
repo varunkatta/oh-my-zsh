@@ -105,7 +105,7 @@ function hgsa() {
   hgs
   popd > /dev/null
   echo
-  for i in {1..5}; do
+  for i in {1..7}; do
     cd $HOME/src$i/pepperdata
     pwd
     hgs
@@ -164,7 +164,7 @@ function h() {
   elif [[ "${name}" == "rm" ]]; then
     service hadoop-yarn-resourcemanager ${cmd}
   elif [[ "${name}" == "nm" ]]; then
-    service hadoop-yarn-resourcemanager ${cmd}
+    service hadoop-yarn-nodemanager ${cmd}
   elif [[ "${name}" == "jt" ]]; then
     service hadoop-0.20-mapreduce-jobtracker ${cmd}
   elif [[ "${name}" == "tt" ]]; then
@@ -175,10 +175,11 @@ function h() {
 alias yls='yarn application -list'
 
 function ykill() {
-  if [ $# -eq 0 ]; then
-    yarn application -list | grep -i application_ | awk '{print $1}' | xargs -I{} yarn application -kill {}
-    exit 1
+  if [ $# -ne 1 ]; then
+    echo "ykill <appid-line-no>. Let line id from yls"
+    return
   fi
+  yarn application -list | grep -i application_ | awk '{print $1}' | xargs -I{} yarn application -kill {}
 }
 
 
