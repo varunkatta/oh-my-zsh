@@ -3,7 +3,7 @@
 # set path
 export PATH=$PATH:$HOME/env/bin
 
-# aliase over-rides
+# alias over-rides
 
 # (i)nteractive; prompt before overwrite
 alias cp='cp -i'
@@ -76,6 +76,7 @@ if [[ "${ostype}" == "Darwin" ]]
 then
   echo "Assuming Mac OS"
   export JAVA_HOME=$(/usr/libexec/java_home)
+  export TERM=xterm-256color
 else
   echo "Assuming Linux"
   export JAVA_HOME="/usr/java/default"
@@ -100,13 +101,13 @@ unalias hgs
 alias hgs='hg status $(hg root)'
 
 function hgsa() {
-  cd $HOME/src/pepperdata
+  cd $SRC_WORK_DIR/${COMPANY}
   pwd
   hgs
   popd > /dev/null
   echo
-  for i in {1..7}; do
-    cd $HOME/src$i/pepperdata
+  for i in {1..10}; do
+    cd $SRC_WORK_DIR$i/${COMPANY}
     pwd
     hgs
     echo
@@ -114,10 +115,16 @@ function hgsa() {
   done
 }
 
-# Yum stuff
+# yum stuff
 alias yli="yum list installed"
 alias yi="yum -y install"
 alias yr="yum remove"
+
+# tar
+funciton dotar() {
+  tar -zcvf $1.tgz $1
+}
+alias untar="tar -zxvf"
 
 # hadoop stuff
 alias hfs='hadoop fs'
@@ -181,6 +188,3 @@ function ykill() {
   fi
   yarn application -list | grep -i application_ | awk '{print $1}' | xargs -I{} yarn application -kill {}
 }
-
-
-
