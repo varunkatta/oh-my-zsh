@@ -52,7 +52,8 @@ alias cls='clear'
 alias l='ls -lart'
 alias ll='ls -lart'
 alias r='reset'
-
+alias t='tail -100'
+alias t2='tail -200'
 
 alias mountmac='sudo mount -t vboxsf machome /home/varun/m'
 
@@ -106,12 +107,14 @@ function hgsa() {
   hgs
   popd > /dev/null
   echo
-  for i in {1..10}; do
-    cd $SRC_WORK_DIR$i/${COMPANY}
-    pwd
-    hgs
-    echo
-    popd > /dev/null
+  for i in {1..15}; do
+    if [ -e $SRC_WORK_DIR$i ]; then
+      cd $SRC_WORK_DIR$i/${COMPANY}
+      pwd
+      hgs
+      echo
+      popd > /dev/null
+    fi 
   done
 }
 
@@ -165,6 +168,8 @@ function h() {
   if [[ "${name}" == "yarn" ]]; then
     service hadoop-yarn-resourcemanager ${cmd}
     service hadoop-yarn-nodemanager ${cmd}
+    service hadoop-hdfs-namenode ${cmd}
+    service hadoop-hdfs-datanode ${cmd}
   elif [[ "${name}" == "classic" ]]; then
     service hadoop-0.20-mapreduce-jobtracker ${cmd}
     service hadoop-0.20-mapreduce-tasktracker ${cmd}
@@ -187,4 +192,16 @@ function ykill() {
     return
   fi
   yarn application -list | grep -i application_ | awk '{print $1}' | xargs -I{} yarn application -kill {}
+}
+
+# colorful man
+man() {
+    env LESS_TERMCAP_mb=$'\E[01;31m' \
+    LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+    LESS_TERMCAP_me=$'\E[0m' \
+    LESS_TERMCAP_se=$'\E[0m' \
+    LESS_TERMCAP_so=$'\E[38;5;246m' \
+    LESS_TERMCAP_ue=$'\E[0m' \
+    LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+    man "$@"
 }
