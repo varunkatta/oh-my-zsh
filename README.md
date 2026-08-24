@@ -87,6 +87,53 @@ Twitter), and join us on [Discord](https://discord.gg/ohmyzsh).
 
 ### Basic Installation
 
+### Install This Customized Fork
+
+To install the configuration in this repository on a new computer, clone this
+fork instead of running the standard installer. The standard installer uses the
+upstream `ohmyzsh/ohmyzsh` repository and does not include this fork's custom
+configuration.
+
+```sh
+git clone git@github.com:varunkatta/oh-my-zsh.git ~/.oh-my-zsh
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+```
+
+Edit `~/.zshrc` and set the theme before the line that sources Oh My Zsh:
+
+```sh
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="awesomepanda"
+source $ZSH/oh-my-zsh.sh
+```
+
+Files ending in `.zsh` in `custom/` are loaded automatically, including
+`custom/varun.zsh`, which contains this fork's aliases and functions. Review
+that file on a new machine: some entries expect optional tools such as Java,
+VirtualBox, Mercurial, and GNU utilities.
+
+Make Zsh your login shell, then open a new terminal:
+
+```sh
+chsh -s "$(command -v zsh)"
+exec zsh
+```
+
+If an existing `~/.zshrc` is present, back it up before copying the template:
+
+```sh
+mv ~/.zshrc ~/.zshrc.before-oh-my-zsh
+```
+
+To update this installation later:
+
+```sh
+cd ~/.oh-my-zsh
+git pull --ff-only
+```
+
+### Standard Upstream Installation
+
 Oh My Zsh is installed by running one of the following commands in your terminal. You can install this via the
 command-line with either `curl`, `wget` or another similar tool.
 
